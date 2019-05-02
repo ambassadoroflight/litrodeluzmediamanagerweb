@@ -1,0 +1,156 @@
+/* 
+    Created on : Mar 9, 2017, 12:22:28 PM
+    Author     : juandiego@comtor.net
+*/
+@font-face {
+    font-family: OpenSans;
+    src : url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: OpenSans-Bold;
+    src : url('../fonts/OpenSans-Bold.ttf');
+}
+/*FORMULARIO DE LOGIN*/
+/* Formulario */
+#loginForm {
+    width: 300px;
+    height: 100%;
+    margin: 20px auto;
+    border-radius: 2px;
+    font-size: 17px;
+    color: #FFFFFF;
+    background-color: #6194C3;
+    padding-bottom: 20px;
+}
+
+/* Logo cliente */
+#logoLogin {
+    width: 90%;
+    margin: 30px auto 0;
+}
+
+/* Etiquetas "Usuario" y "Contraseña" */
+#loginForm div.DivFormField span:nth-of-type(2) {
+    width: 40% !important;
+    padding-left: 12px;
+    font-weight: bold;
+    text-align: left !important;
+}
+
+/* Campos input de Usuario y Contraseña */
+#loginForm input#login, 
+#loginForm input#password {
+    width:  217px;
+    border-radius: 7px;
+    padding: 5px 2px 5px 22px;
+    font-size: 17px;
+    color: #6194C3;
+    background-color: white;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+/* Campo input de Usuario */
+#loginForm input#login {
+    background-image: url(../images/fingerprint_comtorblue_24.png);
+}
+
+#loginForm input#login:focus{
+    background-image: url(../images/fingerprint_comtorlight_24.png);
+}
+
+/* Campo input de Contraseña */
+#loginForm div.DivFormField:nth-child(3) {
+    margin-top: 15px;
+}
+
+#loginForm input#password {
+    background-image: url(../images/key_comtorblue_24.png);
+}
+
+#loginForm input#password:focus {
+    background-image: url(../images/key_comtorlight_24.png);
+}
+
+#loginForm #ok {
+    margin: 20px auto 0;
+}
+
+/* Imagen "Powered by Comtor" */
+img#poweredImg {
+    margin: 3px auto 30px;
+    display:block;
+    margin: 30px auto;
+}
+
+/* Div con script */
+#loginForm .comtorbox > div:nth-child(2) > div:nth-child(8) {
+    display: none;
+}
+
+/* Mensaje de error */
+#loginForm #login_error_message {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    /*! height: 20px; */
+    margin: 10px 0 0 0;
+    overflow: auto;
+}
+
+#loginForm #login_error_message img {
+    width: 20px;
+    display: inline-block;
+}
+
+#loginForm #login_error_message span {
+    display: inline-block;
+    text-decoration: underline;
+    color: #E60000;
+    text-align: center;
+    margin: 1px;
+}
+
+#loginForm div.comtorboxheader{
+    display: none;
+}
+
+#loginForm tr td{
+    border-top: none !important;
+}
+
+#loginForm .DivFormField{
+    display: table;
+}
+
+#loginForm .DivFormField span:nth-child(3){
+    padding-right: 45px;
+    padding-left: 30px;
+    margin-right: 5px;
+    background-position: 12% bottom;
+    background-repeat: no-repeat;
+}
+
+#loginForm > div.comtorbox{
+    width: 100% !important;
+}
+
+#loginForm > div.comtorbox > div > div:first-of-type{
+    padding-top: 20px;
+}
+
+#loginForm > div.comtorbox > div > table:last-of-type{
+    padding-bottom: 30px;
+}
+
+#loginForm div.DivFormField{
+    text-align:left !important;
+    background-color:transparent !important;
+}
+
+#loginForm div.comtorbox > div > div:last-of-type{
+    background-color: box !important;
+}

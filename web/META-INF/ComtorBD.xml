@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<comtor-connections>
+    <comtor-connection name ="litrodeluz_mediamanager">
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://127.0.0.1/litro_de_luz_radius2</url>
+        <user>litrodeluz</user>
+        <password encrypt="false">litrodeluzradius2</password>
+    </comtor-connection>   
+</comtor-connections>

@@ -1,0 +1,103 @@
+<menu 
+    theme="ThemePanel" 
+    alignment="horizontal" >
+
+    <!--Inicio-->
+    <menuitem 
+        text="menu.home" 
+        url="index.jsp" 
+        icon="framework/images/home_white_16.png" 
+        description="menu.home"/>
+
+    <!--Configuracion-->
+    <menuitem 
+        text="menu.settings" 
+        icon="framework/images/gear_white_16.png"
+        url="#"
+        permission="ADD_USER,EDIT_USER,DELETE_USER,VIEW_USER,ADD_PROFILE,EDIT_PROFILE,DELETE_PROFILE,VIEW_PROFILE">
+        
+        <!--Usuarios-->
+        <menuitem 
+            text="menu.settings.user" 
+            icon="framework/images/user_comtorblue_16.png" 
+            url="index.jsp?option=net.comtor.framework.common.auth.gui.aaa.UserAdmin" 
+            description="menu.settings.user" 
+            permission="ADD_USER,EDIT_USER,DELETE_USER,VIEW_USER"/>
+        
+        <!--Perfiles-->
+        <menuitem 
+            text="menu.settings.profile" 
+            icon="framework/images/group_comtorblue_16.png" 
+            url="index.jsp?option=net.comtor.framework.common.auth.gui.aaa.ProfileAdmin" 
+            description="menu.settings.profile" 
+            permission="ADD_PROFILE,EDIT_PROFILE,DELETE_PROFILE,VIEW_PROFILE"/>
+    </menuitem>
+    
+    <!--Administrar-->
+    <menuitem 
+        text="menu.manage" 
+        icon="framework/images/gear_white_16.png"
+        url="#"
+        permission="ADD_FILM_GENRE,VIEW_FILM_GENRE,DELETE_FILM_GENRE,EDIT_FILM_GENRE,ADD_MOVIE,EDIT_MOVIE,VIEW_MOVIE,DELETE_MOVIE,ADD_MUSIC_GENRE,EDIT_MUSIC_GENRE,
+DELETE_MUSIC_GENRE,VIEW_MUSIC_GENRE,ADD_SONG,EDIT_SONG,VIEW_SONG,DELETE_SONG">
+                
+        <!--Peliculas-->
+        <menuitem 
+            text="menu.manage.movies" 
+            icon="framework/images/icons/menu/movie_submenu.png" 
+            url="#" 
+            description="menu.manage.movies" 
+            permission="ADD_FILM_GENRE,VIEW_FILM_GENRE,DELETE_FILM_GENRE,EDIT_FILM_GENRE,ADD_MOVIE,EDIT_MOVIE,VIEW_MOVIE,DELETE_MOVIE">
+            
+            <!--Generos de Cine-->
+            <menuitem 
+                text="menu.manage.movies.filmgenre" 
+                icon="framework/images/icons/menu/movie_submenu.png" 
+                url="index.jsp?option=org.unlitrodeluzcolombia.mediamanager.gui.movies.FilmGenreAdmin" 
+                description="menu.manage.movies.filmgenre" 
+                permission="ADD_FILM_GENRE,VIEW_FILM_GENRE,DELETE_FILM_GENRE,EDIT_FILM_GENRE"/>
+            
+            <!--Peliculas-->
+            <menuitem 
+                text="menu.manage.movies.movies" 
+                icon="framework/images/icons/menu/movie_submenu.png" 
+                url="index.jsp?option=org.unlitrodeluzcolombia.mediamanager.gui.movies.MovieAdmin" 
+                description="menu.manage.movies.movies" 
+                permission="ADD_MOVIE,EDIT_MOVIE,VIEW_MOVIE,DELETE_MOVIE"/>
+        </menuitem>    
+        
+            
+        <!--Musica-->
+        <menuitem 
+            text="menu.manage.music" 
+            icon="framework/images/icons/menu/music_submenu.png" 
+            url="#" 
+            description="menu.manage.music" 
+            permission="ADD_MUSIC_GENRE,EDIT_MUSIC_GENRE,DELETE_MUSIC_GENRE,VIEW_MUSIC_GENRE,ADD_SONG,EDIT_SONG,VIEW_SONG,DELETE_SONG">
+            
+            <!--Generos Musicales-->
+            <menuitem 
+                text="menu.manage.music.musicgenre" 
+                icon="framework/images/icons/menu/music_submenu.png" 
+                url="index.jsp?option=org.unlitrodeluzcolombia.mediamanager.gui.music.MusicGenreAdmin" 
+                description="menu.manage.music.musicgenre" 
+                permission="ADD_MUSIC_GENRE,EDIT_MUSIC_GENRE,DELETE_MUSIC_GENRE,VIEW_MUSIC_GENRE"/>
+            
+            <!--Canciones-->
+            <menuitem 
+                text="menu.manage.music.songs" 
+                icon="framework/images/icons/menu/music_submenu.png" 
+                url="index.jsp?option=org.unlitrodeluzcolombia.mediamanager.gui.music.SongAdmin" 
+                description="menu.manage.music.songs" 
+                permission="ADD_SONG,EDIT_SONG,VIEW_SONG,DELETE_SONG"/>
+        </menuitem> 
+    </menuitem>       
+            
+    <!--Dump-->
+    <menuitem 
+        text="Generar copia de la DB" 
+        icon="framework/images/gear_white_16.png"
+        url="index.jsp?option=org.unlitrodeluzcolombia.mediamanager.gui.db.GenerateDatabaseDumpPage" 
+        description="Generar copia de la DB" 
+        permission=""/>      
+</menu>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+    <!-- ============== Tag Library Description Elements ============= -->
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>comtor</short-name>
+    <description>
+        Libreria de tags para la generacion de codigo a través de las librerias
+        HTML COMTOR\n
+        Tags library for code generation by means of the HTML COMTOR libraries.
+    </description>
+    <!-- ===================== Content tags ====================== -->
+    <tag>
+        <name>content</name>
+        <tag-class>net.comtor.framework.jsptag.PageGeneratorTag</tag-class>
+        <body-content>EMPTY</body-content>
+        <description>Inserta dinamicamente el contenido de la pagina segun el parámetro "option" que se le pase.\n
+            Inserts dynamically the content of the page based on the parameter "option"</description>
+        <attribute>
+            <name>defaultpagefactory</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>defaultloginfactory</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    <tag>
+        <name>menuli</name>
+        <tag-class>net.comtor.framework.jsptag.MenuULGeneratorTag</tag-class>
+        <attribute >
+            <name>menuid</name>
+            <required>true</required>
+            <description>Id de la etiqueta UL retornada\n
+                Id of returned tag.</description>
+        </attribute>
+        <attribute >
+            <name>internationalized</name>
+            <required>false</required>
+            <description>true si las entradas del menú serán internacionalizadas o false si nó. Por omisión=true\n
+                true if the menu entries will be internationalized, otherwise false. Default=true</description>
+        </attribute>
+        <body-content>EMPTY</body-content>
+        <description>Inserta el contenido del archivo WEB-INF/ComtorMenu.xml, en forma de etiquetas UL/LI\n
+            Inserts the content of the file WEB-INF/ComtorMenu.xml, by means of tags UL/LI</description>
+    </tag>
+    <tag>
+        <name>guielement</name>
+        <tag-class>net.comtor.framework.jsptag.GuiElementTag</tag-class>
+         <body-content>EMPTY</body-content> 
+        <description>Inserts the content of a HtmlGuiInterface</description>
+        <attribute>
+            <name>clazz</name>
+            <required>true</required>
+            <description>The canonical name of the subclass of HtmlGuiInterface to insert</description>
+        </attribute>
+    </tag>
+    <!-- ===================== JS CODE ====================== -->
+    <tag>
+        <name>jsjquery</name>
+        <tag-class>net.comtor.framework.jsptag.JSIncludeJQuery</tag-class>
+        <description>Includes the js code needed for jQuery and jQuery UI</description>
+    </tag>
+    <tag>
+        <name>jscomtorframework</name>
+        <tag-class>net.comtor.framework.jsptag.JSIncludeCOMTORFramework</tag-class>
+        <description>Includes the js code needed to use all the COMTOR Framework</description>
+    </tag>
+    <tag>
+        <name>jsprj</name>
+        <tag-class>net.comtor.framework.jsptag.JSIncludePrj</tag-class>
+        <description>Includes the js code for the project (project.js)</description>
+    </tag>
+    <!-- ===================== Internationalization ====================== -->
+    <tag>
+        <name>keytranslation</name>
+        <tag-class>net.comtor.framework.jsptag.KeyTranslation</tag-class>
+        <attribute>
+            <name>key</name>
+            <required>true</required>
+            <description>The key to be translated</description>
+        </attribute>
+        <description>Translates a given String</description>
+    </tag>
+    <!-- ===================== Session Conditional tags ====================== -->
+    <tag>
+        <name>ifsessionexists</name>
+        <tag-class>net.comtor.framework.jsptag.IfSessionExists</tag-class>
+        <description>Show Content if session Exists</description>
+    </tag>
+    
+    <!-- ===================== Styles====================== -->
+    <tag>
+        <name>cssmain</name>
+        <tag-class>net.comtor.framework.jsptag.CSSMain</tag-class>
+        <description>Includes the CSS code for the project main.css</description>
+    </tag>
+    <tag>
+        <name>jsfinder</name>
+        <tag-class>net.comtor.framework.jsptag.JSFinder</tag-class>
+        <description>Includes the CSS code for the project main.css</description>
+    </tag>
+    
+    
+</taglib>

@@ -1,0 +1,28 @@
+INSERT INTO 
+    privilege (code, description, category)
+VALUES
+    ('ALL', 'Todos los privilegios', 'Configuracion'),
+    ('ADD_USER', 'Agregar usuario', 'Configuracion'), 
+    ('EDIT_USER', 'Editar usuario', 'Configuracion'),
+    ('VIEW_USER', 'Ver usuario', 'Configuracion'),
+    ('DELETE_USER', 'Eliminar usuario', 'Configuracion'),
+    ('ADD_PROFILE', 'Agregar perfil', 'Configuracion'), 
+    ('VIEW_PROFILE', 'Ver perfil', 'Configuracion'), 
+    ('EDIT_PROFILE', 'Editar perfil', 'Configuracion'), 
+    ('DELETE_PROFILE', 'Eliminar perfil', 'Configuracion'),
+    ('ADD_FILM_GENRE', 'Agregar género de película', 'Películas'), 
+    ('VIEW_FILM_GENRE', 'Ver género de película', 'Películas'), 
+    ('EDIT_FILM_GENRE', 'Editar género de película', 'Películas'), 
+    ('DELETE_FILM_GENRE', 'Eliminar género de película', 'Películas'),
+    ('ADD_MOVIE', 'Agregar película', 'Películas'), 
+    ('VIEW_MOVIE', 'Ver película', 'Películas'), 
+    ('EDIT_MOVIE', 'Editar película', 'Películas'), 
+    ('DELETE_MOVIE', 'Eliminar película', 'Películas'),
+    ('ADD_MUSIC_GENRE', 'Agregar género musical', 'Música'), 
+    ('VIEW_MUSIC_GENRE', 'Ver género musical', 'Música'), 
+    ('EDIT_MUSIC_GENRE', 'Editar género musical', 'Música'), 
+    ('DELETE_MUSIC_GENRE', 'Eliminar género musical', 'Música'),
+    ('ADD_SONG', 'Agregar canción', 'Música'), 
+    ('VIEW_SONG', 'Ver canción', 'Música'), 
+    ('EDIT_SONG', 'Editar canción', 'Música'), 
+    ('DELETE_SONG', 'Eliminar canción', 'Música');

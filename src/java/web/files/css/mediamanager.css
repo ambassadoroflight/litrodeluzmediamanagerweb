@@ -1,0 +1,41 @@
+/* 
+    Created on : Feb 19, 2019, 8:58:24 AM
+    Author     : juandiego
+*/
+.adminlist td:first-child img {
+    max-width: 100px;
+    min-height: 100px;
+    margin: 5px auto;
+    display: block;
+}
+
+#movie_form img,
+#song_form img {
+    max-height: 220px;
+}
+
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-radius: .25rem;
+    display: block;
+    width: initial !important;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
