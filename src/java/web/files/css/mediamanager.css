@@ -15,7 +15,7 @@
 }
 
 .alert {
-    position: relative;
+    /*! position: relative; */
     padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
@@ -25,7 +25,10 @@
     border-left-color: transparent;
     border-radius: .25rem;
     display: block;
-    width: initial !important;
+    /*! width: initial !important; */
+    clear: both;
+    margin: 20px auto;
+    width: 80%;
 }
 
 .alert-danger {

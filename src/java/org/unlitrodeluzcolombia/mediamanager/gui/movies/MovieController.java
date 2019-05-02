@@ -10,7 +10,6 @@ import net.comtor.advanced.html.form.HtmlInputNumber;
 import net.comtor.exception.BusinessLogicException;
 import net.comtor.framework.logic.facade.WebLogicFacade;
 import net.comtor.framework.request.HttpServletMixedRequest;
-import net.comtor.html.HtmlElement;
 import net.comtor.html.HtmlImg;
 import net.comtor.html.HtmlText;
 import net.comtor.html.form.HtmlCheckbox;
@@ -26,6 +25,7 @@ import org.unlitrodeluzcolombia.mediamanager.utils.FormUtils;
 import org.unlitrodeluzcolombia.mediamanager.web.facade.FilmGenreWebFacade;
 import org.unlitrodeluzcolombia.mediamanager.web.facade.MovieWebFacade;
 import web.global.GlobalWeb;
+import web.global.LitroDeLuzImages;
 
 /**
  *
@@ -119,10 +119,9 @@ public class MovieController
 
         form.addField("Directorio de Películas", new HtmlText(uploadsDir), null);
 
-        HtmlElement filename = FormUtils.getFilesList("original_filename", uploadsDir);
-        form.addField("Archivo", filename, "Seleccione del listado de los archivos"
-                + " que se encuentran cargados en el servidor el que corresponde a"
-                + " la canción.", true);
+        FormUtils.getFilesList(form, "original_filename", uploadsDir,
+                "Seleccione del listado de los archivos que se encuentran cargados "
+                + "en el servidor el que corresponde a la película.");
 
         if ((movie != null) && (StringUtil.isValid(movie.getFilename()))) {
             HtmlImg cover = new HtmlImg("ImagesServlet?code=" + movie.getCode());
@@ -137,16 +136,6 @@ public class MovieController
         active.checked((movie == null) ? true : movie.isActive());
         form.addField("Activo", active, "Si marca la casilla, la película estará "
                 + "disponible para verse en la plataforma.");
-    }
-
-    @Override
-    public String getViewFormLabel() {
-        return "Ver Canción";
-    }
-
-    @Override
-    public String getViewPrivilegeMsg() {
-        return "Ud. no tiene permisos para ingresar a este módulo.";
     }
 
     @Override
@@ -216,7 +205,7 @@ public class MovieController
         LinkedHashMap<String, String> headers = new LinkedHashMap<>();
         headers.put("poster", "Poster");
         headers.put("title", "Título");
-        headers.put("film_genre", "Género/Categoría");
+        headers.put("film_genre", "Género");
         headers.put("active", "Estado");
 
         return headers;
@@ -233,6 +222,56 @@ public class MovieController
         row.add(movie.getStatus());
 
         return row;
+    }
+
+    @Override
+    protected String getTitleImgPath() {
+        return LitroDeLuzImages.FILM_GENRE_CONTROLLER;
+    }
+
+    @Override
+    public String getLogModule() {
+        return "Películas";
+    }
+
+    @Override
+    public String getAddFormLabel() {
+        return "Nueva Película";
+    }
+
+    @Override
+    public String getAddNewObjectLabel() {
+        return "Agregar Película";
+    }
+
+    @Override
+    public String getEditFormLabel() {
+        return "Editar Película";
+    }
+
+    @Override
+    public String getConfirmDeleteMessage(Movie movie) {
+        return "¿Está seguro que desea eliminar la película <b>" + movie.getTitle() + "</b>?";
+    }
+
+    @Override
+    public String getAddedMessage(Movie movie) {
+        return "La película <b>" + movie.getTitle() + "</b> ha sido creada.";
+    }
+
+    @Override
+    public String getDeletedMessage(Movie movie) {
+        return "La película <b>" + movie.getTitle() + "</b> ha sido eliminada.";
+    }
+
+    @Override
+    public String getUpdatedMessage(Movie movie) {
+        return "La película <b>" + movie.getTitle() + "</b> ha sido actualizada.";
+    }
+
+    @Override
+    public String getViewPrivilegeMsg() {
+        return "Ud. no tiene permisos para ingresar a este módulo.";
     }
 
     private HtmlFinder getFilmGenreFinder(Movie movie) {

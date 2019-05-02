@@ -11,7 +11,6 @@ import net.comtor.advanced.html.form.HtmlInputNumber;
 import net.comtor.exception.BusinessLogicException;
 import net.comtor.framework.logic.facade.WebLogicFacade;
 import net.comtor.framework.request.HttpServletMixedRequest;
-import net.comtor.html.HtmlElement;
 import net.comtor.html.HtmlImg;
 import net.comtor.html.HtmlText;
 import net.comtor.html.form.HtmlCheckbox;
@@ -26,6 +25,7 @@ import org.unlitrodeluzcolombia.mediamanager.utils.FormUtils;
 import org.unlitrodeluzcolombia.mediamanager.web.facade.MusicGenreWebFacade;
 import org.unlitrodeluzcolombia.mediamanager.web.facade.SongWebFacade;
 import web.global.GlobalWeb;
+import web.global.LitroDeLuzImages;
 
 /**
  *
@@ -111,7 +111,7 @@ public class SongController
         form.addField("Álbum", album, null);
 
         HtmlFinder music_genre = getMusicGenreFinder(song);
-        form.addField("Género/Categoría", music_genre, null, true);
+        form.addField("Género", music_genre, null, true);
 
         HtmlInputNumber release_year = new HtmlInputNumber("release_year", 4, 4,
                 HtmlInputNumber.Type.INTEGER);
@@ -127,10 +127,9 @@ public class SongController
 
         form.addField("Directorio de Canciones", new HtmlText(uploadsDir), null);
 
-        HtmlElement filename = FormUtils.getFilesList("original_filename", uploadsDir);
-        form.addField("Archivo", filename, "Seleccione del listado de los archivos"
-                + " que se encuentran cargados en el servidor el que corresponde a"
-                + " la canción.", true);
+        FormUtils.getFilesList(form, "original_filename", uploadsDir, "Seleccione "
+                + "del listado de los archivos que se encuentran cargados en el "
+                + "servidor el que corresponde a la canción.");
 
         if ((song != null) && (StringUtil.isValid(song.getCover()))) {
             HtmlImg cover = new HtmlImg("ImagesServlet?code=" + song.getCode());
@@ -147,16 +146,6 @@ public class SongController
         active.checked((song == null) ? true : song.isActive());
         form.addField("Activo", active, "Si marca la casilla, la canción estará "
                 + "disponible en la plataforma.");
-    }
-
-    @Override
-    public String getViewFormLabel() {
-        return "Ver Canción";
-    }
-
-    @Override
-    public String getViewPrivilegeMsg() {
-        return "Ud. no tiene permisos para ingresar a este módulo.";
     }
 
     @Override
@@ -251,6 +240,56 @@ public class SongController
         row.add(song.getStatus());
 
         return row;
+    }
+
+    @Override
+    protected String getTitleImgPath() {
+        return LitroDeLuzImages.MUSIC_GENRE_CONTROLLER;
+    }
+
+    @Override
+    public String getLogModule() {
+        return "Canciones";
+    }
+
+    @Override
+    public String getAddFormLabel() {
+        return "Nueva Canción";
+    }
+
+    @Override
+    public String getAddNewObjectLabel() {
+        return "Agregar Canción";
+    }
+
+    @Override
+    public String getEditFormLabel() {
+        return "Editar Canción";
+    }
+
+    @Override
+    public String getConfirmDeleteMessage(Song song) {
+        return "¿Está seguro que desea eliminar la canción <b>" + song.getTitle() + "</b>?";
+    }
+
+    @Override
+    public String getAddedMessage(Song song) {
+        return "La canción <b>" + song.getTitle() + "</b> ha sido creada.";
+    }
+
+    @Override
+    public String getDeletedMessage(Song song) {
+        return "La canción <b>" + song.getTitle() + "</b> ha sido eliminada.";
+    }
+
+    @Override
+    public String getUpdatedMessage(Song song) {
+        return "La canción <b>" + song.getTitle() + "</b> ha sido actualizada.";
+    }
+
+    @Override
+    public String getViewPrivilegeMsg() {
+        return "Ud. no tiene permisos para ingresar a este módulo.";
     }
 
     private HtmlFinder getMusicGenreFinder(Song song) {

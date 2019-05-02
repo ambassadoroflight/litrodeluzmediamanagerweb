@@ -90,13 +90,13 @@ public class UserWebFacade extends AbstractWebLogicFacade<User, String, UserDAOF
         if (StringUtil.isValid(login)) {
             try {
                 if (find(login) != null) {
-                    exceptions.add(new ObjectValidatorException("login", I18n.tr(getLang(), "user.message.login.exception2")));
+                    exceptions.add(new ObjectValidatorException("login",  "user.message.login.exception2"));
                 }
             } catch (BusinessLogicException ex) {
                 LOG.log(Level.SEVERE, ex.getMessage(), ex);
             }
         } else {
-            exceptions.add(new ObjectValidatorException("login", I18n.tr(getLang(), "user.message.login.exception1")));
+            exceptions.add(new ObjectValidatorException("login", "user.message.login.exception1"));
         }
 
         validatePassword(user, exceptions);

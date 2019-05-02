@@ -33,12 +33,11 @@ import net.comtor.framework.util.security.SecurityHelper;
 import net.comtor.html.form.HtmlSelect;
 import net.comtor.framework.util.FormUtil;
 import net.comtor.util.StringUtil;
-import web.global.GlobalWeb;
 
 /**
  *
  * @author juandiego@comtor.net
- * @since Jan 23, 2019
+ * @since Jan 24, 2019
  */
 public class UserController extends AbstractComtorFacadeAdministratorControllerI18n<User, String> {
 
@@ -99,7 +98,7 @@ public class UserController extends AbstractComtorFacadeAdministratorControllerI
         HtmlInputPassword password = new HtmlInputPassword("password", 16, 256);
         form.addField("user.field.password", password, null, true);
 
-        HtmlInputPassword confirmPassword = new HtmlInputPassword("confirm_password", 16, 256);
+        HtmlInputPassword confirmPassword = new HtmlInputPassword("confirm_password", "", 16, 256);
         form.addField("user.field.confirmpassword", confirmPassword, null, true);
 
         HtmlInputText name = new HtmlInputText("name", 32, 256);
@@ -228,10 +227,8 @@ public class UserController extends AbstractComtorFacadeAdministratorControllerI
         LinkedList<String> actions = new LinkedList<>();
         ComtorUser admin = UserHelper.getCurrentUser(getRequest());
 
-        final String superUser = ComtorGlobal.SUPER_USER;
-
-        if ((!user.getLogin().equals(superUser))
-                || (admin.getLogin().equals(superUser))) {
+        if ((!user.getLogin().equals(ComtorGlobal.SUPER_USER))
+                || (admin.getLogin().equals(ComtorGlobal.SUPER_USER))) {
             if ((getEditPrivilege() != null)
                     && (SecurityHelper.can(getEditPrivilege(), getRequest()))) {
                 actions.add(getEditIcon(getBaseUrl(), user));

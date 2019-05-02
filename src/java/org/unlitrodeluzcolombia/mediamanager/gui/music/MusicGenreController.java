@@ -2,6 +2,7 @@ package org.unlitrodeluzcolombia.mediamanager.gui.music;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
@@ -38,12 +39,12 @@ public class MusicGenreController
 
     @Override
     public String getEntityName() {
-        return "musicgenre.entityname";
+        return "Género Musical";
     }
 
     @Override
     public String getLogModule() {
-        return "musicgenre.logmodule";
+        return "Géneros Musicales";
     }
 
     @Override
@@ -60,16 +61,11 @@ public class MusicGenreController
     public void initForm(AdministrableForm form, MusicGenre genre)
             throws BusinessLogicException {
         if (genre != null) {
-            final long musicGenreId = genre.getId();
-
-            form.addInputHidden("id", musicGenreId);
-
-            HtmlText id = new HtmlText(musicGenreId + "");
-            form.addField("musicgenre.field.id", id, null);
+            form.addInputHidden("id", genre.getId());
         }
 
         HtmlInputText name = new HtmlInputText("name", 32, 128);
-        form.addField("musicgenre.field.name", name, null, true);
+        form.addField("Nombre", name, null, true);
     }
 
     @Override
@@ -85,15 +81,10 @@ public class MusicGenreController
 
             final long id = genre.getId();
 
-            HtmlText text;
+            HtmlText text = new HtmlText(genre.getName());
+            form.addField("Nombre", text, null);
 
-            text = new HtmlText(id);
-            form.addField("musicgenre.field.id", text, null);
-
-            text = new HtmlText(genre.getName());
-            form.addField("musicgenre.field.name", text, null);
-
-            LinkedList<Song> songs;
+            List<Song> songs;
 
             songs = new SongDAOFacade().findAllByProperty("music_genre", id);
 
@@ -177,67 +168,43 @@ public class MusicGenreController
     }
 
     @Override
-    public String getAddNewObjectLabel() {
-        return translate("musicgenre.add.title");
+    public String getAddFormLabel() {
+        return "Nuevo Género";
     }
 
     @Override
-    public String getAddFormLabel() {
-        return translate("musicgenre.new.title");
+    public String getAddNewObjectLabel() {
+        return "Crear Género Musical";
     }
 
     @Override
     public String getEditFormLabel() {
-        return translate("musicgenre.edit.title");
-    }
-
-    @Override
-    public String getViewFormLabel() {
-        return translate("musicgenre.view.title");
-    }
-
-    @Override
-    public String getAddedMessage(MusicGenre genre) {
-        return formatI18nMessage("musicgenre.message.added", (genre.getId() + ""),
-                genre.getName());
-    }
-
-    @Override
-    public String getUpdatedMessage(MusicGenre genre) {
-        return formatI18nMessage("musicgenre.message.updated", (genre.getId() + ""),
-                genre.getName());
+        return "Editar Género Musical";
     }
 
     @Override
     public String getConfirmDeleteMessage(MusicGenre genre) {
-        return formatI18nMessage("musicgenre.message.confirmdelete", (genre.getId() + ""),
-                genre.getName());
+        return "¿Está seguro que desea eliminar el género <b>" + genre.getName() + "</b>?";
+    }
+
+    @Override
+    public String getAddedMessage(MusicGenre genre) {
+        return "El género <b>" + genre.getName() + "</b> ha sido creado.";
     }
 
     @Override
     public String getDeletedMessage(MusicGenre genre) {
-        return formatI18nMessage("musicgenre.message.deleted", (genre.getId() + ""),
-                genre.getName());
+        return "El género <b>" + genre.getName() + "</b> ha sido eliminado.";
     }
 
     @Override
-    public String getAddPrivilegeMsg() {
-        return "controller.message.noprivileges";
-    }
-
-    @Override
-    public String getEditPrivilegeMsg() {
-        return "controller.message.noprivileges";
+    public String getUpdatedMessage(MusicGenre genre) {
+        return "El género <b>" + genre.getName() + "</b> ha sido actualizado.";
     }
 
     @Override
     public String getViewPrivilegeMsg() {
-        return "controller.message.noprivileges";
-    }
-
-    @Override
-    public String getDeletePrivilegeMsg() {
-        return "controller.message.noprivileges";
+        return "Ud. no tiene permisos para ingresar a este módulo.";
     }
 
 }

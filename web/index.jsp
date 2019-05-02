@@ -4,7 +4,7 @@
     Created on : Jan 23, 2019, 16:45
     Author     : juandiego@comtor.net
 --%>
-
+<%@page import="web.global.LitroDeLuzImages"%>
 <%@page import="net.comtor.framework.images.Images"%>
 <%@page import="net.comtor.util.connection.ConnectionType"%>
 <%@page import="net.comtor.dao.ComtorDaoException"%>
@@ -35,16 +35,17 @@
             title += " (Pruebas)";
             break;
     }
-
 %>
 <html>
     <head>
         <title><%=title%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='framework/images/favicon.ico' rel="shortcut icon" >
+        <link href="framework/images/favicon.png" rel="shortcut icon" />
         <comtor:cssmain></comtor:cssmain>
-            <link type="text/css" rel="stylesheet" href="framework/css/simple-grid.min.css"/>
+        <link type="text/css" rel="stylesheet" href="framework/css/login.css"/>
+        <link type="text/css" rel="stylesheet" href="framework/css/simple-grid.min.css"/>
+        <link type="text/css" rel="stylesheet" href="framework/css/mediamanager.css"/>
         <comtor:jsjquery></comtor:jsjquery>
         <comtor:jscomtorframework></comtor:jscomtorframework>
         </head>
@@ -54,7 +55,7 @@
             <div id="top">
                 <div id ="logo">
                     <a href="index.jsp">
-                        <img src="<%=Images.CLIENT_LOGO%>" alt="<comtor:keytranslation key="html.client.logo.alt"></comtor:keytranslation>"/>
+                        <img src="<%=LitroDeLuzImages.MEDIA_MANAGER_LOGO_APP%>" alt="<comtor:keytranslation key="html.client.logo.alt"></comtor:keytranslation>"/>
                         </a>
                     </div>
                     <div id="header">
@@ -74,12 +75,13 @@
         </comtor:ifsessionexists>
 
         <div id="content">
-            <comtor:content defaultpagefactory="web.gui.Index" defaultloginfactory="web.gui.login.Login" />
+            <comtor:content defaultpagefactory="web.gui.Index" 
+                            defaultloginfactory="web.gui.login.Login" />
         </div>
 
         <div id="footer">
             <span id="disclaimer">
-                <span class="disclaimerText">© <em>Linternet</em> por <b>Litro de Luz Colombia</b> - <%=ComtorGlobal.CURRENT_YEAR%></span>
+                <span class="disclaimerText">© <a href="http://inlitrodeluzcolombia.org"> Litro de Luz Colombia</a> - <%=ComtorGlobal.CURRENT_YEAR%></span>
             </span>
         </div>
 

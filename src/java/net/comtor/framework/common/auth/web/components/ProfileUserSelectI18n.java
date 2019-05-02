@@ -24,11 +24,12 @@ import net.comtor.util.StringUtil;
 /**
  *
  * @author juandiego@comtor.net
- * @since Jun 21, 2018
+ * @since Jan 24, 2019
  */
 public class ProfileUserSelectI18n implements HtmlFormElement, HtmlElement {
 
     private static final Logger LOG = Logger.getLogger(ProfileUserSelectI18n.class.getName());
+
     private HttpServletRequest request;
     private HtmlSelect selected;
     private HtmlSelect available;
@@ -174,15 +175,20 @@ public class ProfileUserSelectI18n implements HtmlFormElement, HtmlElement {
         selected.addAttribute("multiple", null);
 
         table = new HtmlTable();
-        table.addCell(new HtmlText("<b>" + getLabelAvailable() + "</b>", false), HtmlTd.ALIGN_CENTER);
+        table.addAttribute("id", "profile-selector");
+        table.addCell(new HtmlText("<b>" + getLabelAvailable() + "</b>", false),
+                HtmlTd.ALIGN_CENTER);
         table.addCell(new HtmlText(""));
-        table.addCell(new HtmlText("<b>" + getLabelSelected() + "</b>", false), HtmlTd.ALIGN_CENTER);
+        table.addCell(new HtmlText("<b>" + getLabelSelected() + "</b>", false),
+                HtmlTd.ALIGN_CENTER);
         table.nextRow();
 
         HtmlTd td = table.addCell(available);
         td.addAttribute("rowSpan", "2");
-        HtmlButton button = new HtmlButton(HtmlButton.SCRIPT_BUTTON, "add_profile_button", ">>");
-        button.onClick("addProfiles('" + name + "_selected', '" + name + "_available', '" + name + "')");
+        HtmlButton button = new HtmlButton(HtmlButton.SCRIPT_BUTTON,
+                "add_profile_button", ">>");
+        button.onClick("addProfiles('" + name + "_selected', '" + name
+                + "_available', '" + name + "')");
         table.addCell(button);
         td = table.addCell(selected);
         td.addAttribute("rowSpan", "2");
@@ -195,14 +201,17 @@ public class ProfileUserSelectI18n implements HtmlFormElement, HtmlElement {
                 value += (profile + ";");
             }
 
-            value = value.endsWith(";") ? value.substring(0, value.length() - 1) : value;
+            value = value.endsWith(";")
+                    ? value.substring(0, value.length() - 1)
+                    : value;
         }
 
         hidden = new HtmlInputHidden(name, name, value);
         td.addElement(hidden);
 
         button = new HtmlButton(HtmlButton.SCRIPT_BUTTON, "delete_profile_button", "<<");
-        button.onClick("deleteProfiles('" + name + "_selected', '" + name + "_available', '" + name + "')");
+        button.onClick("deleteProfiles('" + name + "_selected', '" + name
+                + "_available', '" + name + "')");
         table.addCell(button);
         table.nextRow();
     }

@@ -12,10 +12,21 @@ import net.comtor.framework.html.administrable.AbstractComtorFacadeAdministrator
 import net.comtor.framework.html.advanced.ComtorLinkIconFish;
 import net.comtor.framework.pagefactory.index.TableIndexFactory;
 import net.comtor.framework.util.security.SecurityHelper;
-import net.comtor.i18n.I18n;
 import net.comtor.i18n.html.ComtorLinkIconFishI18n;
-import static net.comtor.framework.images.Images.PROFILES_INDEX;
-import static net.comtor.framework.images.Images.USERS_INDEX;
+import org.unlitrodeluzcolombia.mediamanager.gui.db.GenerateDatabaseDumpPage;
+import org.unlitrodeluzcolombia.mediamanager.gui.movies.FilmGenreAdmin;
+import org.unlitrodeluzcolombia.mediamanager.gui.movies.FilmGenreController;
+import org.unlitrodeluzcolombia.mediamanager.gui.movies.MovieAdmin;
+import org.unlitrodeluzcolombia.mediamanager.gui.movies.MovieController;
+import org.unlitrodeluzcolombia.mediamanager.gui.music.MusicGenreAdmin;
+import org.unlitrodeluzcolombia.mediamanager.gui.music.MusicGenreController;
+import org.unlitrodeluzcolombia.mediamanager.gui.music.SongAdmin;
+import org.unlitrodeluzcolombia.mediamanager.gui.music.SongController;
+import static web.global.LitroDeLuzImages.DUMP_INDEX;
+import static web.global.LitroDeLuzImages.MOVIES_INDEX;
+import static web.global.LitroDeLuzImages.MUSIC_INDEX;
+import static web.global.LitroDeLuzImages.PROFILE_INDEX;
+import static web.global.LitroDeLuzImages.USER_INDEX;
 
 /**
  *
@@ -30,13 +41,36 @@ public class Index extends TableIndexFactory {
 
         if (can(new UserController())) {
             linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(UserAdmin.class),
-                    USERS_INDEX, "user.entityname.plural", getRequest()));
+                    USER_INDEX, "Usuarios", getRequest()));
         }
 
         if (can(new ProfileController())) {
             linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(ProfileAdmin.class),
-                    PROFILES_INDEX, "profile.entityname.plural", getRequest()));
+                    PROFILE_INDEX, "PERFILES", getRequest()));
         }
+
+        if (can(new FilmGenreController())) {
+            linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(FilmGenreAdmin.class),
+                    MOVIES_INDEX, "Géneros de Películas", getRequest()));
+        }
+
+        if (can(new MovieController())) {
+            linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(MovieAdmin.class),
+                    MOVIES_INDEX, "Películas", getRequest()));
+        }
+
+        if (can(new MusicGenreController())) {
+            linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(MusicGenreAdmin.class),
+                    MUSIC_INDEX, "Géneros Musicales", getRequest()));
+        }
+
+        if (can(new SongController())) {
+            linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(SongAdmin.class),
+                    MUSIC_INDEX, "Canciones", getRequest()));
+        }
+
+        linkIcons.add(new ComtorLinkIconFishI18n(ComtorGlobal.getLink(GenerateDatabaseDumpPage.class),
+                DUMP_INDEX, "Generar copia de DB", getRequest()));
 
         return linkIcons;
     }
@@ -49,11 +83,8 @@ public class Index extends TableIndexFactory {
     @Override
     public String getWelcomeMessage() {
         User user = (User) UserHelper.getCurrentUser(getRequest()).getUser();
-        String currentUser = user.getName();
-        String welcomeMessage = I18n.tr(getLang(), "index.welcomemessage")
-                .replace("${currentUser}", currentUser);
 
-        return welcomeMessage;
+        return "Bienvenido, " + user.getName();
     }
 
     private boolean can(AbstractComtorFacadeAdministratorController controller) {

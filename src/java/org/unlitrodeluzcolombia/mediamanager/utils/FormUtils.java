@@ -1,7 +1,7 @@
 package org.unlitrodeluzcolombia.mediamanager.utils;
 
 import java.io.File;
-import net.comtor.html.HtmlElement;
+import net.comtor.advanced.administrable.AdministrableForm;
 import net.comtor.html.HtmlSpan;
 import net.comtor.html.form.HtmlOption;
 import net.comtor.html.form.HtmlSelect;
@@ -13,7 +13,8 @@ import net.comtor.html.form.HtmlSelect;
  */
 public final class FormUtils {
 
-    public static HtmlElement getFilesList(String name, String directory) {
+    public static void getFilesList(final AdministrableForm form, final String name, 
+            final String directory, final String hint) {
         HtmlSelect select = new HtmlSelect(name);
 
         File uploadsDir = new File(directory);
@@ -21,8 +22,10 @@ public final class FormUtils {
         File[] files = uploadsDir.listFiles();
 
         if (files.length == 0) {
-            return new HtmlSpan("", ("No se encontraron archivos en el directorio "
-                    + directory), "alert alert-danger");
+            form.addRowInOneCell(new HtmlSpan("", ("No se encontraron archivos en el directorio "
+                    + directory), "alert alert-danger"));
+            
+            return;
         }
 
         HtmlOption disabledOption = new HtmlOption("", "Seleccionar archivo", "true");
@@ -34,7 +37,7 @@ public final class FormUtils {
             select.addOption(file.getName(), file.getName());
         }
 
-        return select;
+        form.addField("Archivo", select, hint, true);
 
     }
 

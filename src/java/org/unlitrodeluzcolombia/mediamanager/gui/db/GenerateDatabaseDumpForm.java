@@ -14,6 +14,7 @@ import net.comtor.html.HtmlUl;
 import net.comtor.i18n.html.AbstractComtorFormValidateActionI18n;
 import net.comtor.i18n.html.DivFormI18n;
 import web.global.GlobalWeb;
+import web.global.LitroDeLuzImages;
 
 /**
  *
@@ -35,6 +36,11 @@ public class GenerateDatabaseDumpForm extends AbstractComtorFormValidateActionI1
     }
 
     @Override
+    protected String getTitleImgPath() {
+        return LitroDeLuzImages.DUMP_CONTROLLER;
+    }
+
+    @Override
     protected IndexContainerAndIndexedError createForm(HttpServletMixedRequest request,
             HttpServletResponse response) {
         AdministrableForm form = new DivFormI18n(getOption(),
@@ -42,7 +48,8 @@ public class GenerateDatabaseDumpForm extends AbstractComtorFormValidateActionI1
         form.setTitle(getTitleText());
         form.setFormName("generate_db_dump_form");
 
-        form.addRowInOneCell(new HtmlP("Se generará una copia de la base de datos para ser usada en la sincronización hacia los Hotspot."));
+        form.addRowInOneCell(new HtmlP("Se generará una copia de la base de datos "
+                + "para ser usada en la sincronización hacia los Hotspot."));
         form.addRowInOneCell(new HtmlP("Se copiarán las siguientes tablas:"));
 
         HtmlUl list = new HtmlUl();
@@ -61,25 +68,31 @@ public class GenerateDatabaseDumpForm extends AbstractComtorFormValidateActionI1
     @Override
     public String processForm(HttpServletMixedRequest request, HttpServletResponse response)
             throws ComtorException {
-        String user = GlobalWeb.getInstance().getDatabaseUser();
-        String pass = GlobalWeb.getInstance().getDatabasePassword();
+        if (request.getParameter("cancel") == null) {
+            String user = GlobalWeb.getInstance().getDatabaseUser();
+            String pass = GlobalWeb.getInstance().getDatabasePassword();
 
-        String commands[] = {"/bin/sh", "-c", "mysqldump -u " + user + " -p"
-            + pass + " litro_de_luz_radius2 --complete-insert movie film_genre song "
-            + "music_genre > /opt/litro_de_luz/database_dump/litrodeluz_dump.sql "};
+            String commands[] = {"/bin/sh", "-c", "mysqldump -u " + user + " -p"
+                + pass + " litro_de_luz_radius2 --complete-insert movie film_genre song "
+                + "music_genre > /opt/litro_de_luz/database_dump/litrodeluz_dump.sql "};
 
-        try {
-            Process process = Runtime.getRuntime().exec(commands);
-            process.waitFor();
+            try {
+                Process process = Runtime.getRuntime().exec(commands);
+                process.waitFor();
 
-            return ComtorMessageHelperI18n.getOkForm(getTitleText(), "index.jsp",
-                    "Se ha generado la copia exitosamente.", request).getHtml();
-        } catch (IOException | InterruptedException ex) {
-            LOG.log(Level.SEVERE, ex.getMessage(), ex);
+                return ComtorMessageHelperI18n.getOkForm(getTitleText(), "index.jsp",
+                        "Se ha generado la copia exitosamente.", request).getHtml();
+            } catch (IOException | InterruptedException ex) {
+                LOG.log(Level.SEVERE, ex.getMessage(), ex);
 
-            return ComtorMessageHelperI18n.getErrorForm(getTitleText(),
-                    "index.jsp", ex, false, request).getHtml();
+                return ComtorMessageHelperI18n.getErrorForm(getTitleText(),
+                        "index.jsp", ex, false, request).getHtml();
+            }
         }
+        
+        redirectFromCancel(request, response);
+
+        return "";
 
     }
 

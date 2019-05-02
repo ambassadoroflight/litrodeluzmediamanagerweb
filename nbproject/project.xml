@@ -38,6 +38,10 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${reference.litro-de-luz-web-gui-lib.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.commons-codec-1.9.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -165,6 +169,14 @@
             </reference>
             <reference>
                 <foreign-project>cos</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
+            </reference>
+            <reference>
+                <foreign-project>litro-de-luz-web-gui-lib</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
