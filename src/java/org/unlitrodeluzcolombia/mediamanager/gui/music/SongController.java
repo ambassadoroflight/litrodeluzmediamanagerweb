@@ -68,7 +68,6 @@ public class SongController
                 HtmlInputNumber.Type.INTEGER);
         form.addField("Año", release_year, null);
 
-        //TODO: AGREGAR BUSCADOR DE FECHA DE CARGA
         HtmlCheckbox active = new HtmlCheckbox("active", "active");
         form.addField("Activo", active, null);
     }

@@ -40,12 +40,12 @@
     <head>
         <title><%=title%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="framework/images/favicon.png" rel="shortcut icon" />
         <comtor:cssmain></comtor:cssmain>
-        <link type="text/css" rel="stylesheet" href="framework/css/login.css"/>
-        <link type="text/css" rel="stylesheet" href="framework/css/simple-grid.min.css"/>
-        <link type="text/css" rel="stylesheet" href="framework/css/mediamanager.css"/>
+            <link type="text/css" rel="stylesheet" href="framework/css/login.css"/>
+            <link type="text/css" rel="stylesheet" href="framework/css/simple-grid.min.css"/>
+            <link type="text/css" rel="stylesheet" href="framework/css/mediamanager.css"/>
         <comtor:jsjquery></comtor:jsjquery>
         <comtor:jscomtorframework></comtor:jscomtorframework>
         </head>
@@ -62,10 +62,12 @@
                         <span id="title"><%=title%></span>
                 </div>
 
-                <div class="menu">
-                    <span id="classicMenu">
+                <div class="menu">                   
+                    <span id="classicMenu" class="topnav">
                         <comtor:menuli internationalized="true" menuid="sysMenu"></comtor:menuli>
                         </span>
+
+                        <a href="#" class="menu-icon" onclick="showMenu();" title="Expandir Menú">&#9776;</a>
 
                     <comtor:guielement clazz="web.gui.userInfo.HtmlUserSpecificMenu"></comtor:guielement>
                     </div>
@@ -81,10 +83,21 @@
 
         <div id="footer">
             <span id="disclaimer">
-                <span class="disclaimerText">© <a href="http://inlitrodeluzcolombia.org"> Litro de Luz Colombia</a> - <%=ComtorGlobal.CURRENT_YEAR%></span>
+                <span class="disclaimerText">© <a href="http://unlitrodeluzcolombia.org"> Litro de Luz Colombia</a> - <%=ComtorGlobal.CURRENT_YEAR%></span>
             </span>
         </div>
 
         <comtor:jsprj></comtor:jsprj>
+        <script>
+            function showMenu() {
+                var sysMenu = $("#sysMenu");
+
+                if (sysMenu.hasClass("responsive")) {
+                    sysMenu.removeClass("responsive");
+                } else {
+                    sysMenu.addClass("responsive");
+                }
+            }
+        </script>
     </body>
 </html>

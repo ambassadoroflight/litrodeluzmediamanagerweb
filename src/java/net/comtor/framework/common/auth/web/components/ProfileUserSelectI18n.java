@@ -1,6 +1,5 @@
 package net.comtor.framework.common.auth.web.components;
 
-import i18n.WebFrameWorkTranslationHelper;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -10,7 +9,6 @@ import net.comtor.dao.ComtorDaoException;
 import net.comtor.html.HtmlElement;
 import net.comtor.html.HtmlTable;
 import net.comtor.html.HtmlTd;
-import net.comtor.html.HtmlText;
 import net.comtor.html.form.HtmlButton;
 import net.comtor.html.form.HtmlFormElement;
 import net.comtor.html.form.HtmlInputHidden;
@@ -19,6 +17,8 @@ import net.comtor.i18n.LocaleHelper;
 import net.comtor.framework.common.auth.element.Profile;
 import net.comtor.framework.common.auth.element.User;
 import net.comtor.framework.common.auth.facade.ProfileDAOFacade;
+import net.comtor.html.HtmlTh;
+import net.comtor.html.HtmlTr;
 import net.comtor.util.StringUtil;
 
 /**
@@ -166,34 +166,44 @@ public class ProfileUserSelectI18n implements HtmlFormElement, HtmlElement {
      * @param user
      */
     private void initHtmlSelect(User user) {
-        available = new HtmlSelect(name + "_available", 200);
-        available.addAttribute("size", "" + selectSize);
-        available.addAttribute("multiple", null);
-
-        selected = new HtmlSelect(name + "_selected", 200);
-        selected.addAttribute("size", "" + selectSize);
-        selected.addAttribute("multiple", null);
-
         table = new HtmlTable();
         table.addAttribute("id", "profile-selector");
-        table.addCell(new HtmlText("<b>" + getLabelAvailable() + "</b>", false),
-                HtmlTd.ALIGN_CENTER);
-        table.addCell(new HtmlText(""));
-        table.addCell(new HtmlText("<b>" + getLabelSelected() + "</b>", false),
-                HtmlTd.ALIGN_CENTER);
-        table.nextRow();
+        table.addElement(getHeaders());
 
-        HtmlTd td = table.addCell(available);
-        td.addAttribute("rowSpan", "2");
-        HtmlButton button = new HtmlButton(HtmlButton.SCRIPT_BUTTON,
-                "add_profile_button", ">>");
-        button.onClick("addProfiles('" + name + "_selected', '" + name
-                + "_available', '" + name + "')");
-        table.addCell(button);
-        td = table.addCell(selected);
-        td.addAttribute("rowSpan", "2");
-        table.nextRow();
+        HtmlTr row = new HtmlTr();
 
+        available = getSelect(name + "_available", selectSize);
+
+        HtmlTd cell;
+        cell = new HtmlTd(available);
+        row.add(cell);
+
+        cell = new HtmlTd();
+
+        HtmlButton button = new HtmlButton(HtmlButton.SCRIPT_BUTTON, "add_profile_button", ">>");
+        button.onClick("addProfiles('" + name + "_selected', '" + name + "_available', '" + name + "')");
+
+        cell.add(button);
+
+        button = new HtmlButton(HtmlButton.SCRIPT_BUTTON, "delete_profile_button", "<<");
+        button.onClick("deleteProfiles('" + name + "_selected', '" + name + "_available', '" + name + "')");
+
+        cell.add(button);
+        row.add(cell);
+
+        selected = getSelect(name + "_selected", selectSize);
+
+        cell = new HtmlTd(selected);
+
+        hidden = getHiddenInput(user);
+        cell.addElement(hidden);
+
+        row.add(cell);
+
+        table.addElement(row);
+    }
+
+    private HtmlInputHidden getHiddenInput(User user) {
         String value = "";
 
         if (user != null) {
@@ -206,30 +216,24 @@ public class ProfileUserSelectI18n implements HtmlFormElement, HtmlElement {
                     : value;
         }
 
-        hidden = new HtmlInputHidden(name, name, value);
-        td.addElement(hidden);
-
-        button = new HtmlButton(HtmlButton.SCRIPT_BUTTON, "delete_profile_button", "<<");
-        button.onClick("deleteProfiles('" + name + "_selected', '" + name
-                + "_available', '" + name + "')");
-        table.addCell(button);
-        table.nextRow();
+        return new HtmlInputHidden(name, name, value);
     }
 
-    /**
-     *
-     * @return
-     */
-    private String getLabelAvailable() {
-        return WebFrameWorkTranslationHelper.translate("profile.available", getLang());
+    private HtmlTr getHeaders() {
+        HtmlTr headerRow = new HtmlTr();
+        headerRow.addElement(new HtmlTh("Disponibles"));
+        headerRow.addElement(new HtmlTh(""));
+        headerRow.addElement(new HtmlTh("Seleccionados"));
+
+        return headerRow;
     }
 
-    /**
-     *
-     * @return
-     */
-    private String getLabelSelected() {
-        return WebFrameWorkTranslationHelper.translate("profile.selected", getLang());
+    private HtmlSelect getSelect(final String name, final int size) {
+        HtmlSelect select = new HtmlSelect(name);
+        select.addAttribute("size", (size + ""));
+        select.addAttribute("multiple", null);
+
+        return select;
     }
 
 }

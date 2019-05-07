@@ -30,7 +30,7 @@ import web.global.GlobalWeb;
 public class SongWebFacade extends AbstractWebLogicFacade<Song, String, SongDAOFacade> {
 
     private static final Logger LOG = Logger.getLogger(SongWebFacade.class.getName());
-//TODO: VALIDAR CUANDO EL ARCHIVO NO EXISTA
+
     @Override
     public void insert(Song song) throws BusinessLogicException {
         try {
@@ -52,7 +52,6 @@ public class SongWebFacade extends AbstractWebLogicFacade<Song, String, SongDAOF
 
             song.setFilename(filename);
 
-            //FIXME: MEJORAR ESTA PARTE DE LA LÓGICA
             File cover_file = getRequest().getMparser().getFile("cover_file");
 
             if (cover_file == null) {
