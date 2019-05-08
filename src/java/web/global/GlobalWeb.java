@@ -20,9 +20,9 @@ public class GlobalWeb {
 
     private static final Logger LOG = Logger.getLogger(GlobalWeb.class.getName());
 
-    public static final String PROJECT_NAME = "Litro de Luz - Media Manager";
-    public static final String VERSION = "Versión 0.0.1";
-    public static String LAST_UPDATED = "[18-Feb-2019]";
+    public static final String PROJECT_NAME = "Media Manager";
+    public static String VERSION = "1.0";
+    public static final String LAST_UPDATED = "[18-Feb-2019]";
     public static final ConnectionType CONNECTION_TYPE = ConnectionType.DEVELOPMENT;
     public static final String NAME_CONNECTION = "litrodeluz_mediamanager";
 
@@ -34,7 +34,7 @@ public class GlobalWeb {
             + File.separator + "peliculas";
     public static final String MUSIC_DIRECTORY_PATH = FILES_DIRECTORY_PATH
             + File.separator + "musica";
-    public static final String IMAGES_DIRECTORY_PATH = FILES_DIRECTORY_PATH 
+    public static final String IMAGES_DIRECTORY_PATH = FILES_DIRECTORY_PATH
             + File.separator + "imagenes";
 
     private static final String UPLOADS_HOME = CONNECTION_TYPE.equals(ConnectionType.DEVELOPMENT)
@@ -58,10 +58,8 @@ public class GlobalWeb {
     static {
         switch (CONNECTION_TYPE) {
             case DEVELOPMENT:
-                LAST_UPDATED += " (Desarrollo)";
-                break;
             case TEST:
-                LAST_UPDATED += " (Pruebas)";
+                VERSION += " (Desarrollo)";
                 break;
         }
     }

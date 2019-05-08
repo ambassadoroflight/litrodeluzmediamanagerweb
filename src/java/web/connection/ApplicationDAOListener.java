@@ -16,7 +16,9 @@ public class ApplicationDAOListener implements ServletContextListener {
         GlobalWeb.getInstance(sce.getServletContext().getRealPath(""));
 
         System.out.println("\n> Cargando Parametros de Conexion "
-                + GlobalWeb.PROJECT_NAME + " [" + GlobalWeb.VERSION + "]: "
+                + GlobalWeb.PROJECT_NAME
+                + " [Versión " + GlobalWeb.VERSION + " - "
+                + GlobalWeb.LAST_UPDATED + "]: "
                 + GlobalWeb.NAME_CONNECTION + "\n");
     }
 
@@ -25,7 +27,9 @@ public class ApplicationDAOListener implements ServletContextListener {
         GlobalWeb.dispose();
 
         System.out.println("\n> Destruyendo Parametros de Conexion "
-                + GlobalWeb.PROJECT_NAME + " [" + GlobalWeb.VERSION + "]: "
+                + GlobalWeb.PROJECT_NAME
+                + " [Versión " + GlobalWeb.VERSION + " - "
+                + GlobalWeb.LAST_UPDATED + "]: "
                 + GlobalWeb.NAME_CONNECTION + "\n");
     }
 }

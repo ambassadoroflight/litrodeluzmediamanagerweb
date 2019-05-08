@@ -87,8 +87,10 @@
             </span>
         </div>
 
+        <%@include file="about.jsp" %>
+
         <comtor:jsprj></comtor:jsprj>
-        <script>
+        <script type="text/javascript">
             function showMenu() {
                 var sysMenu = $("#sysMenu");
 

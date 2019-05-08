@@ -21,7 +21,6 @@ import net.comtor.i18n.I18n;
 import net.comtor.i18n.LocaleHelper;
 import web.gui.login.ChangePasswordPage;
 import net.comtor.framework.images.Images;
-import web.global.GlobalWeb;
 
 /**
  *
@@ -89,8 +88,7 @@ public class HtmlUserSpecificMenu extends HtmlGuiInterface {
         HtmlLi about = new HtmlLi();
         HtmlLink aboutLink = new HtmlLink(new HtmlImg(Images.INFO_16).getHtml()
                 + "Acerca de...", "#", false);
-        aboutLink.addAttribute("onclick", "showAboutWindow('" + Images.CLIENT_LOGO
-                + "', '" + GlobalWeb.PROJECT_NAME + "', '" + GlobalWeb.VERSION + "');");
+        aboutLink.addAttribute("onclick", "showAboutWindow2();");
         about.addElement(aboutLink);
         liUserPrivileges.addElement(about);
 
